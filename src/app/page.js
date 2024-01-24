@@ -1,15 +1,14 @@
 import Link from "next/link";
 
-import Hero from "./components/layout/Hero";
-import Header from "./components/layout/Header";
-import HomeMenu from "./components/layout/HomeMenu";
-import SectionHeaders from "./components/layout/SectionHeaders";
+import Hero from "../components/layout/Hero";
+import Header from "../components/layout/Header";
+import HomeMenu from "../components/layout/HomeMenu";
+import SectionHeaders from "../components/layout/SectionHeaders";
 
 
 export default function Home() {
   return (
     <>
-      <Header />
       <Hero />
       <HomeMenu />
       <section className="text-center my-8">
@@ -36,9 +35,9 @@ export default function Home() {
           mainHeader={'Contact us'}
         />
         <div className="mt-8">
-        <a className="text-4xl underline text-gray-500" href="tel:+46738123123">
-          +46 738 123 123
-        </a>
+          <a className="text-4xl underline text-gray-500" href="tel:+46738123123">
+            +46 738 123 123
+          </a>
         </div>
       </section>
     </>

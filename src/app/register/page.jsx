@@ -15,17 +15,24 @@ export default function RegisterPage() {
     setCreatingUser(true);
     setError(false);
     setUserCreated(false);
-    const response = await fetch('/api/register', {
+    // const response = await fetch('/api/register', {
+    //   method: 'POST',
+    //   body: JSON.stringify({email, password}),
+    //   headers: {'Content-Type': 'application/json'},
+    // });
+    // if (response.ok) {
+    //   setUserCreated(true);
+    // }
+    // else {
+    //   setError(true);
+    // }
+
+    const response = fetch('/api/register', {
       method: 'POST',
       body: JSON.stringify({email, password}),
       headers: {'Content-Type': 'application/json'},
     });
-    if (response.ok) {
-      setUserCreated(true);
-    }
-    else {
-      setError(true);
-    }
+
     setCreatingUser(false);
   }
   return (

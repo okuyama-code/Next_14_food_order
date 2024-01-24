@@ -7,6 +7,7 @@ section.hero{
   grid-template-columns: .4fr .6fr;
 }
 
+/* 下記の要素すべてに適用するスタイル */
 select,
 input[type="email"],
 input[type="password"],
