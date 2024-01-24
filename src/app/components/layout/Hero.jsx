@@ -28,7 +28,7 @@ const Hero = () => {
           </button>
         </div>
       </div>
-      <div className="relative hidden md:block">
+      <div className="relative">
         <Image src={'/pizza.png'} layout={'fill'} objectFit={'contain'} alt={'pizza'} />
       </div>
     </section>
