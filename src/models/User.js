@@ -6,12 +6,6 @@ const UserSchema = new Schema({
   password: {
     type: String,
     required: true,
-    validate: pass => {
-      if (!pass?.length || pass.length < 5) {
-        new Error('パスワードが5文字未満です')
-        return false
-      }
-    }
   },
   // image: {type: String},
 }, {timestamps: true});
