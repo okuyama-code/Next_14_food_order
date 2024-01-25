@@ -7,6 +7,12 @@ const Header = () => {
   const session = useSession();
   console.log(session);
   const status = session.status
+  const userData = session.data?.user
+  let userName = userData?.name || userData?.email
+  if (userName && userName.includes(' ')) {
+    userName = userName.split(' ')[0];
+  }
+
   return (
     <header className='flex items-center justify-between'>
       <nav className="flex items-center text-gray-500 font-semibold gap-8">
@@ -21,15 +27,20 @@ const Header = () => {
 
       <nav className='flex items-center gap-4 text-gray-400'>
         {status === 'authenticated' && (
-          <button
-            onClick={() => signOut({
-              callbackUrl: '/login'
-            })}
-           className="bg-primary rounded-full text-white px-8 py-2">
-            Logout
-          </button>
+          <>
+            <Link href={'/profile'} className='whitespace-nowrap'>
+              こんにちは, {userName}さん
+            </Link>
+            <button
+              onClick={() => signOut({
+                callbackUrl: '/login'
+              })}
+            className="bg-primary rounded-full text-white px-8 py-2">
+              Logout
+            </button>
+          </>
         )}
-        {status !== 'authenticated' && (
+        {status === 'unauthenticated' && (
           <>
             <Link href={'/login'} className="bg-primary rounded-full text-white px-8 py-2">Login</Link>
             <Link href={'/register'} className="bg-primary rounded-full text-white px-8 py-2">Register</Link>
