@@ -22,7 +22,9 @@ const Header = () => {
       <nav className='flex items-center gap-4 text-gray-400'>
         {status === 'authenticated' && (
           <button
-            onClick={() => signOut()}
+            onClick={() => signOut({
+              callbackUrl: '/login'
+            })}
            className="bg-primary rounded-full text-white px-8 py-2">
             Logout
           </button>
