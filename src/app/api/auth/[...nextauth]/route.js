@@ -1,28 +1,37 @@
+import { User } from "@/models/User";
+import mongoose from "mongoose";
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
+import GoogleProvider from "next-auth/providers/google";
+
 
 
 const handler = NextAuth({
+  secret: process.env.SECRET,
   providers: [
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET
+    }),
     CredentialsProvider({
       name: 'Credentials',
+      id: 'credentials',
       credentials: {
         username: { label: "Email", type: "email", placeholder: "test@example.com" },
         password: { label: "Password", type: "password" }
       },
       async authorize(credentials, req) {
-        const res = await fetch("/your/endpoint", {
-          method: 'POST',
-          body: JSON.stringify(credentials),
-          headers: { "Content-Type": "application/json" }
-        })
-        const user = await res.json()
+        // console.log(credentials)
+        const {email, password} = credentials;
 
-        // If no error and we have user data, return it
-        if (res.ok && user) {
+        mongoose.connect(process.env.MONGO_URL)
+        const user = await User.findOne({email})
+        const passwordOk = user && password == user.password
+
+        if (passwordOk) {
           return user
         }
-        // Return null if user data could not be retrieved
+
         return null
       }
     })
