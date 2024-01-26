@@ -34,9 +34,15 @@ export default function LoginPage() {
         </div>
         <button type="button"
         onClick={() => signIn('google', {callbackUrl: '/'})}
-                className="flex gap-4 justify-center">
+                className="flex gap-4 justify-center mb-2">
           <Image src={'/google.png'} alt={''} width={24} height={24} />
           Login with google
+        </button>
+        <button type="button"
+        onClick={() => signIn('github', {callbackUrl: '/'})}
+                className="flex gap-4 justify-center">
+          <Image src={'/github.png'} alt={''} width={24} height={24} />
+          Login with github
         </button>
       </form>
     </section>

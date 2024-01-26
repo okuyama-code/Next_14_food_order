@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import GoogleProvider from "next-auth/providers/google";
+import GitHubProvider from "next-auth/providers/github";
 import { MongoDBAdapter } from "@auth/mongodb-adapter"
 import clientPromise from "@/libs/mongoConnect";
 
@@ -14,6 +15,10 @@ export const authOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET
+    }),
+    GitHubProvider({
+      clientId: process.env.GITHUB_ID,
+      clientSecret: process.env.GITHUB_SECRET
     }),
     CredentialsProvider({
       name: 'Credentials',
