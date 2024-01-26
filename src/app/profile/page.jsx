@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react'
 
 export default function page() {
   const session = useSession();
-  console.log(session)
+  // console.log(session)
   const [userName, setUserName] = useState("")
   const [saved, setSaved] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
@@ -48,12 +48,14 @@ export default function page() {
     const files = ev.target.files;
     if (files?.length === 1) {
       const data = new FormData;
-      data.set('files', files[0])
-      await fetch('api/upload', {
+      data.set('file', files[0])
+      const response = await fetch('api/upload', {
         method: 'POST',
         body: data,
         // headers: {'Content-Type': 'multipart/form-data'}
-      })
+      });
+      const json = await response.json()
+      console.log(json)
     }
 
   }
